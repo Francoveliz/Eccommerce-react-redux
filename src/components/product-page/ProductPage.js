@@ -9,7 +9,7 @@ const ProductPage = ({ match }) => {
 			<div className="row mt-5">
 				<div className="col-lg-6">
 					<img
-						className="img-fluid w-100 img-thumbnail"
+						className="img-fluid w-100 "
 						src={product.thumbnail}
 						alt="thumbnail"
 					/>
@@ -24,11 +24,6 @@ const ProductPage = ({ match }) => {
 							</button>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div className="row">
-				<div className="col-lg-6">
-					<h3>descripcion del producto</h3>
 				</div>
 			</div>
 		</div>

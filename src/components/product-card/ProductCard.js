@@ -8,9 +8,9 @@ const ProductCard = ({ title, price, thumbnail, id }) => {
 		<Link
 			to={`/products/${id}`}
 			className="text-decoration-none text-reset">
-			<div className="card rounded-3">
+			<div className="card rounded-3 border-0">
 				<img src={thumbnail} className="card-img-top" alt="..." />
-				<div className="card-body">
+				<div className="card-body ">
 					<h6 className="card-title text-center fw-light">{title}</h6>
 					<h5 className="card-text text-center ">{`$${price}`}</h5>
 				</div>
