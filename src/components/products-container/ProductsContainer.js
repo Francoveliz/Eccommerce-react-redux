@@ -8,7 +8,7 @@ const ProductsContainer = () => {
 		<div className="container">
 			<div className="row g-5">
 				{products.map(product => (
-					<div className="col-lg-3 col-md-4 col-sm-6">
+					<div className="col-lg-3 col-md-4 col-6">
 						<ProductCard {...product} />
 					</div>
 				))}
