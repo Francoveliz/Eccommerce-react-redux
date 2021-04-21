@@ -1,59 +1,86 @@
 import React from "react";
 import "./style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
-const CartItem = () => {
-	return (
-		<div className="row">
-			<div className="col-2 p-0">
-				<img
-					className="img-fluid img-thumbnail"
-					src="http://http2.mlstatic.com/D_939063-MLA43751372595_102020-I.jpg"
-					alt=""
-				/>
+import { useSelector, useDispatch } from "react-redux";
+import {
+	removeItemCart,
+	increaseQuantityItem,
+	decreaseQuantityItem,
+} from "../../context/actions";
+
+const Cart = ({ handleCartOpen }) => {
+	const MINIMUM_QUANTITY = 1;
+	const cartItems = useSelector(state => state.cart);
+	const dispatch = useDispatch();
+
+	const cartItemsDisplay = cartItems.map(item => (
+		<div className=" mb-4">
+			<div className="row justify-content-end">
+				<button
+					onClick={() => dispatch(removeItemCart(item.id))}
+					className="btn btn-outline-dark w-auto border-0">
+					<i class="bi bi-x" />
+				</button>
 			</div>
-			<div className="col-8">
-				<div className="row">
-					<div className="col">
-						<p className="m-0 p-0">Cat Tee Black T-Shirt</p>
+			<div className="row">
+				<div className="col p-0">
+					<img
+						className="img-fluid img-thumbnail"
+						src={item.thumbnail}
+						alt=""
+					/>
+				</div>
+				<div className="col-6">
+					<div className="row">
+						<div className="col">
+							<p className="m-0 p-0">{item.title}</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col">
+							<p className="m-0 p-0">{`Quantity: ${item.quantity}`}</p>
+						</div>
 					</div>
 				</div>
-				<div className="row">
-					<div className="col">
-						<p className="m-0 p-0">S | Black with custom print</p>
+				<div className="col">
+					<div className="row">
+						<div className="col">
+							<p>{`$${item.price}`} </p>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="col">
-						<p className="m-0 p-0">Quantity: 13</p>
-					</div>
-				</div>
-			</div>
-			<div className="col-2">
-				<div className="row">
-					<div className="col">
-						<p>$10.90</p>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col">
-						<p>- +</p>
+					<div className="row ">
+						<div className="col d-flex ">
+							<button
+								onClick={() => {
+									if (item.quantity > MINIMUM_QUANTITY) {
+										dispatch(decreaseQuantityItem(item.id));
+									}
+								}}
+								className="btn btn-secondary rounded-0 rounded-start btn-sm">
+								<i class="bi bi-dash" />
+							</button>
+							<button
+								onClick={() => {
+									dispatch(increaseQuantityItem(item.id));
+								}}
+								className="btn btn-secondary rounded-0 rounded-end btn-sm">
+								<i class="bi bi-plus" />
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	);
-};
+	));
 
-const Cart = ({ handleCartOpen }) => {
 	return (
 		<div className="cart__container">
 			<button onClick={handleCartOpen} className="btn btn-primary">
-				X
+				<i class="bi bi-x" />
 			</button>
-			<div className="container">
-				<CartItem />
-			</div>
+			<div className="container">{cartItemsDisplay}</div>
 		</div>
 	);
 };
