@@ -77,7 +77,7 @@ const Cart = ({ handleCartOpen }) => {
 
 	return (
 		<div className="cart__container">
-<div className="d-flex">
+<div className="d-flex justify-content-end">
 			<button onClick={handleCartOpen} className="btn btn-primary">
 				<i class="bi bi-x" />
 			</button>
