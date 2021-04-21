@@ -77,9 +77,11 @@ const Cart = ({ handleCartOpen }) => {
 
 	return (
 		<div className="cart__container">
+<div className="d-flex">
 			<button onClick={handleCartOpen} className="btn btn-primary">
 				<i class="bi bi-x" />
 			</button>
+<div/>
 			<div className="container">{cartItemsDisplay}</div>
 		</div>
 	);
